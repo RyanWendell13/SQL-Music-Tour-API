@@ -1,4 +1,5 @@
 // DEPENDENCIES
+const {Sequelize} = require('sequelize')
 const express = require('express')
 const app = express()
 
@@ -6,6 +7,7 @@ const app = express()
 require('dotenv').config()
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
+
 
 // ROOT
 app.get('/', (req, res) => {
@@ -18,3 +20,7 @@ app.get('/', (req, res) => {
 app.listen(process.env.PORT, () => {
     console.log(`🎸 Rockin' on port: ${process.env.PORT}`)
 })
+
+// CONTROLLERS 
+const bandsController = require('./controllers/bands_controller')
+app.use('/bands', bandsController)
