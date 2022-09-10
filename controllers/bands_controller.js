@@ -8,7 +8,6 @@ const {Op} = require('sequelize')
 bands.get('/', async (req, res) => {
     try {
         const foundBands = await Band.findAll({
-            order: [['available_start_time', 'ASC']],
             where: {
                 name:{[Op.like]: `%${req.query.name ? req.query.name : ''}%`}
             }
